@@ -1,0 +1,14 @@
+{% extends 'www/base.html' %}
+{% load widget_tweaks %}
+{% block content %}<br>
+<div class="container" style="width: 30%">
+    <h2>Mailing</h2>
+    <form action="{% url 'mailing' %}" method="post">
+        {% csrf_token %}
+        <div class="form-outline mb-4">
+            {{ form.text|attr:"class:form-control" }}
+        </div>
+        <input type="submit" value="Send" class="btn btn-primary btn-block mb-4" style="width: 100%">
+    </form>
+</div>
+{% endblock %}

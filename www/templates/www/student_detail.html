@@ -1,0 +1,39 @@
+{% extends 'www/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container">
+    <br>
+    <div class="row">
+        <div class="col-md-3">
+            <h4>Student {{ student.id }} ID</h4>
+            <ul class="list-group mb-2">
+                <li class="list-group-item">
+                    <img class="card-img-top" src="{{ student.photo.url }}">
+                </li>
+                <li class="list-group-item">
+                    <h4 class="my-0">{{ student.fio }}</h4>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="my-0"><b>Email:</b> {{ student.email }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="my-0"><b>Date of birth:</b> {{ student.birth_date }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="my-0"><b>Class:</b> {{ student.klass }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="my-0"><b>Address:</b> {{ student.address }}</h6>
+                </li>
+                <li class="list-group-item">
+                    <h6 class="my-0"><b>Sex</b>: {{ student.sex }}</h6>
+                </li>
+            </ul>
+            <a href="{% url 'student-update' student.id %}"
+            class="btn btn-primary">Edit</a>
+            <a href="{% url 'student-delete' student.id %}"
+            class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,56 @@
+{% extends 'www/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<h1>Students List</h1>
+<div class="container" style="width: 30%">
+    <form action="{% url 'search' %}" method="GET">
+        {% csrf_token %}
+        <div class="form-outline mb-4">
+            {{ form.query|attr:"class:form-control"|attr:"placeholder:Query" }}
+        </div>
+        <button type="submit" class="btn btn-primary"
+        style="width: 100%">Search</button>
+    </form>
+</div>
+<div style="position:absolute; right: 0; top: 10px;">
+    <a href="{% url 'student-create' %}"
+    class="btn btn-success">Create new Student</a>
+    <a href="{% url 'mailing' %}"
+    class="btn btn-primary">Mailing</a>
+    <a href="{% url 'logout' %}"
+    class="btn btn-danger">Log out</a>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Full name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Birth date</th>
+            <th class="col">Class</th>
+            <th class="col">Address</th>
+            <th class="col">Sex</th>
+            <th class="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <th scope="row">{{ student.id }}</th>
+            <td>{{ student.fio }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.birth_date }}</td>
+            <td>{{ student.klass }}</td>
+            <td>{{ student.address }}</td>
+            <td>{{ student.sex }}</td>
+            <td>
+                <a href="{% url 'student-detail' student.id %}"
+                class="btn btn-primary">
+                    View
+                </a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

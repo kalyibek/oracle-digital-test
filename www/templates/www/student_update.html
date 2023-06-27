@@ -1,0 +1,45 @@
+{% extends 'www/base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 order-md-1">
+            <h4 class="mb-3">Student update form</h4>
+            <form action="{% url 'student-update' student.id %}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        {{ form.fio|attr:"class:form-control"|attr:"placeholder:full name" }}
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        {{ form.email|attr:"class:form-control"|attr:"placeholder:email" }}
+                    </div>
+                </div>
+                <div class="mb-3">
+                    {{ form.birth_date|attr:"class:form-control"|attr:"placeholder:date of birth (YYYY-MM-DD)" }}
+                </div>
+                <div class="mb-3">
+                    {{ form.address|attr:"class:form-control"|attr:"placeholder:address" }}
+                </div>
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <h6>Class</h6>
+                        {{ form.klass|attr:"class:custom-select d-block w-100" }}
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        <h6>Sex</h6>
+                        {{ form.sex|attr:"class:custom-select d-block w-100" }}
+                    </div>
+                    <div class="col-md-5 mb-3">
+                        {{ form.photo|attr:"class:form-control"|attr:"placeholder:photo" }}
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
